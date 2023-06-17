@@ -1,6 +1,9 @@
 package br.com.oraclechallenge.ConversorMoedas;
 
 import javax.swing.*;
+
+
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +11,12 @@ import java.awt.event.ActionListener;
 
 
 public class TelaConversorMoedas extends JDialog {
+
     private JPanel jPanel = new JPanel(new GridBagLayout());//painel de componentes
+
     private JLabel converterDe = new JLabel("Converter De: ");
     private JLabel converterPara = new JLabel("Converter Para: ");
+    
     private JTextField deMoeda = new JTextField();
     private JTextField paraMoeda = new JTextField();
 
@@ -18,21 +24,18 @@ public class TelaConversorMoedas extends JDialog {
     private JComboBox selecaoMoedasPara = new JComboBox<>();
 
     private JButton btnConverter = new JButton("Converter");
-    private JButton btnLimpar = new JButton("Limpar");
+    private JButton btnVoltar = new JButton("Voltar");
 
     Moeda moeda = new Moeda();
 
 
     public TelaConversorMoedas() {
-        //titulo da pagina
+      
         setTitle("Conversor de Moedas");
-        //tamanho tela
-        setSize(new Dimension(490,330));
-        //centralizar a tela
+        setSize(new Dimension(450,290));
         setLocationRelativeTo(null);
-        //nao deixar redimencionar a tela manualmente
-          // setResizable(false);
-        //gerenciar posição da tela
+      
+
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -41,11 +44,11 @@ public class TelaConversorMoedas extends JDialog {
 
 
 
-        converterDe.setPreferredSize(new Dimension(200,40));
+        converterDe.setPreferredSize(new Dimension(200,30));
         jPanel.add(converterDe,gridBagConstraints);
 
         gridBagConstraints.gridy = 1;
-        selecaoMoedasDe.setPreferredSize(new Dimension(80,40));
+        selecaoMoedasDe.setPreferredSize(new Dimension(80,30));
         selecaoMoedasDe.addItem("BRL");
         selecaoMoedasDe.addItem("USD");
         selecaoMoedasDe.addItem("EUR");
@@ -66,18 +69,20 @@ public class TelaConversorMoedas extends JDialog {
 
         gridBagConstraints.gridy = 1 ;
         gridBagConstraints.gridx= 1 ;
-        deMoeda.setPreferredSize(new Dimension(200,40));
+        deMoeda.setPreferredSize(new Dimension(200,30));
+        deMoeda.setDocument(new soNumeros());
+        deMoeda.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         jPanel.add(deMoeda, gridBagConstraints);
 
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        converterPara.setPreferredSize(new Dimension(200,40));
+        converterPara.setPreferredSize(new Dimension(200,30));
         jPanel.add(converterPara,gridBagConstraints);
 
 
         gridBagConstraints.gridy = 3 ;
         gridBagConstraints.gridx= 0 ;
-        selecaoMoedasPara.setPreferredSize(new Dimension(80,40));
+        selecaoMoedasPara.setPreferredSize(new Dimension(80,30));
         selecaoMoedasPara.addItem("USD");
         selecaoMoedasPara.addItem("EUR");
         selecaoMoedasPara.addItem("JPY");
@@ -96,18 +101,32 @@ public class TelaConversorMoedas extends JDialog {
 
         gridBagConstraints.gridy = 3 ;
         gridBagConstraints.gridx= 1 ;
-        paraMoeda.setPreferredSize(new Dimension(200,40));
+        paraMoeda.setPreferredSize(new Dimension(200,30));
+        paraMoeda.setEditable(false);
+        paraMoeda.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         jPanel.add(paraMoeda, gridBagConstraints);
 
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.insets = new Insets(25,5,10,5);
-        gridBagConstraints.anchor = GridBagConstraints.LINE_END;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new Insets(25,0,10,0);
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+        
+        btnVoltar.setPreferredSize(new Dimension(130,30));
+        jPanel.add(btnVoltar,gridBagConstraints);
+        btnVoltar.addActionListener(new ActionListener() {
 
-        btnLimpar.setPreferredSize(new Dimension(130,40));
-        jPanel.add(btnLimpar,gridBagConstraints);
+          @Override
+          public void actionPerformed(ActionEvent arg0) {
+             TelaInicial telaInicial = new TelaInicial();
+               setVisible(false);
+               telaInicial.setVisible(true);
+            throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+          }
+          
+        });
+
         gridBagConstraints.gridx = 1;
-        btnConverter.setPreferredSize(new Dimension(130,40));
+        btnConverter.setPreferredSize(new Dimension(130,30));
         jPanel.add(btnConverter,gridBagConstraints);
 
         btnConverter.addActionListener(new ActionListener() {
@@ -117,15 +136,14 @@ public class TelaConversorMoedas extends JDialog {
                     JOptionPane.showMessageDialog(null,"Selecione Moedas Diferentes para conversão !!!");
 
                 }else {
-                  String resultado = moeda.multiplicarConversor( String.valueOf(selecaoMoedasPara.getSelectedItem())+ String.valueOf(selecaoMoedasDe.getSelectedItem()) ,Double.valueOf(deMoeda.getText()));
-                    paraMoeda.setText(resultado);
-
+                  paraMoeda.setText(moeda.multiplicarConversor( String.valueOf(selecaoMoedasPara.getSelectedItem())
+                  + String.valueOf(selecaoMoedasDe.getSelectedItem()) ,Double.valueOf(deMoeda.getText())));
+                    
                 }
             }
 
 
         });
-
 
         add(jPanel,BorderLayout.PAGE_START);
         setVisible(true);

@@ -16,7 +16,8 @@ import static br.com.oraclechallenge.ConversorMoedas.CotacaoAPI.buscaCotacao;
 public class App {
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        TelaConversorMoedas telaConversorMoedas = new TelaConversorMoedas();
+       // TelaConversorMoedas telaConversorMoedas = new TelaConversorMoedas();
+            TelaInicial telaInicial = new TelaInicial();
 
 
     }

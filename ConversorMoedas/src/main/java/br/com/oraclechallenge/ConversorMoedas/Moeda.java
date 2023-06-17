@@ -22,13 +22,29 @@ class  Moeda {
 	 public Moeda() {
 		
 	}
+	
 
+	public Moeda(String code, String codein, String name, Double high, String low, String varBid, String pctChange,
+			String bid, String ask, String timestamp, String create_date) {
+		this.code = code;
+		this.codein = codein;
+		this.name = name;
+		this.high = high;
+		this.low = low;
+		this.varBid = varBid;
+		this.pctChange = pctChange;
+		this.bid = bid;
+		this.ask = ask;
+		this.timestamp = timestamp;
+		this.create_date = create_date;
+	}
 
 
 	public String multiplicarConversor(String string, Double valor) {
      Moeda moeda = CotacaoAPI.buscaCotacao(string);
-     double resultado = moeda.getHigh() * valor;
+     double resultado = (moeda.getHigh() * valor);
        return String.valueOf(resultado);
+	   
     }
 
 
@@ -108,4 +124,4 @@ class  Moeda {
 
 
 	
-		}
+}
