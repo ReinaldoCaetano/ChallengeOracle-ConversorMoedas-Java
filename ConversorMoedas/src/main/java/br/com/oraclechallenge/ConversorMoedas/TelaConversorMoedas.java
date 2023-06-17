@@ -2,6 +2,9 @@ package br.com.oraclechallenge.ConversorMoedas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 
 public class TelaConversorMoedas extends JDialog {
@@ -12,10 +15,13 @@ public class TelaConversorMoedas extends JDialog {
     private JTextField paraMoeda = new JTextField();
 
     private JComboBox selecaoMoedasDe = new JComboBox<>();
-    private JComboBox selecaoMoedasPara = new JComboBox<>();
+        private JComboBox selecaoMoedasPara = new JComboBox<>();
 
     private JButton btnConverter = new JButton("Converter");
     private JButton btnLimpar = new JButton("Limpar");
+
+
+
     public TelaConversorMoedas() {
         //titulo da pagina
         setTitle("Conversor de Moedas");
@@ -39,6 +45,21 @@ public class TelaConversorMoedas extends JDialog {
 
         gridBagConstraints.gridy = 1;
         selecaoMoedasDe.setPreferredSize(new Dimension(80,40));
+        selecaoMoedasDe.addItem("BRL");
+        selecaoMoedasDe.addItem("USD");
+        selecaoMoedasDe.addItem("EUR");
+        selecaoMoedasDe.addItem("JPY");
+        selecaoMoedasDe.addItem("BTC");
+        selecaoMoedasDe.addItem("ETH");
+        selecaoMoedasDe.addItem("CAD");
+        selecaoMoedasDe.addItem("GBP");
+        selecaoMoedasDe.addItem("ARS");
+        selecaoMoedasDe.addItem("CHF");
+        selecaoMoedasDe.addItem("AUD");
+        selecaoMoedasDe.addItem("CNY");
+        selecaoMoedasDe.addItem("ILS");
+        selecaoMoedasDe.addItem("LTC");
+
         jPanel.add(selecaoMoedasDe,gridBagConstraints);
 
 
@@ -56,6 +77,20 @@ public class TelaConversorMoedas extends JDialog {
         gridBagConstraints.gridy = 3 ;
         gridBagConstraints.gridx= 0 ;
         selecaoMoedasPara.setPreferredSize(new Dimension(80,40));
+        selecaoMoedasPara.addItem("USD");
+        selecaoMoedasPara.addItem("EUR");
+        selecaoMoedasPara.addItem("JPY");
+        selecaoMoedasPara.addItem("BTC");
+        selecaoMoedasPara.addItem("ETH");
+        selecaoMoedasPara.addItem("CAD");
+        selecaoMoedasPara.addItem("GBP");
+        selecaoMoedasPara.addItem("ARS");
+        selecaoMoedasPara.addItem("CHF");
+        selecaoMoedasPara.addItem("AUD");
+        selecaoMoedasPara.addItem("CNY");
+        selecaoMoedasPara.addItem("ILS");
+        selecaoMoedasPara.addItem("LTC");
+        selecaoMoedasPara.addItem("BRL");
         jPanel.add(selecaoMoedasPara,gridBagConstraints);
 
         gridBagConstraints.gridy = 3 ;
@@ -74,8 +109,32 @@ public class TelaConversorMoedas extends JDialog {
         btnConverter.setPreferredSize(new Dimension(130,40));
         jPanel.add(btnConverter,gridBagConstraints);
 
+        btnConverter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { //executa clic no botão
+                if(String.valueOf(selecaoMoedasDe.getSelectedItem()) == String.valueOf(selecaoMoedasPara.getSelectedItem())){
+                    JOptionPane.showMessageDialog(null,"Selecione Moedas Diferentes para conversão !!!");
+
+                }else {
+                  String resultado =  multiplicarConversor( String.valueOf(selecaoMoedasPara.getSelectedItem())+ String.valueOf(selecaoMoedasDe.getSelectedItem()) ,Double.valueOf(deMoeda.getText()));
+                    paraMoeda.setText(resultado);
+
+                }
+            }
+
+
+        });
+
 
         add(jPanel,BorderLayout.PAGE_START);
         setVisible(true);
     }
+
+    private String multiplicarConversor(String s, Double valor) {
+        Moeda moeda = CotacaoAPI.buscaCotacao(s);
+       double resultado = moeda.getHigh() * valor;
+       return String.valueOf(resultado);
+    }
+
+
 }

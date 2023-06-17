@@ -1,4 +1,7 @@
 package br.com.oraclechallenge.ConversorMoedas;
+
+import static br.com.oraclechallenge.ConversorMoedas.CotacaoAPI.buscaCotacao;
+
 class  Moeda {
 	private String code;
 	private String codein;
