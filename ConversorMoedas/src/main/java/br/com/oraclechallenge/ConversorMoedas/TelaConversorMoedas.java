@@ -15,11 +15,12 @@ public class TelaConversorMoedas extends JDialog {
     private JTextField paraMoeda = new JTextField();
 
     private JComboBox selecaoMoedasDe = new JComboBox<>();
-        private JComboBox selecaoMoedasPara = new JComboBox<>();
+    private JComboBox selecaoMoedasPara = new JComboBox<>();
 
     private JButton btnConverter = new JButton("Converter");
     private JButton btnLimpar = new JButton("Limpar");
 
+    Moeda moeda = new Moeda();
 
 
     public TelaConversorMoedas() {
@@ -116,7 +117,7 @@ public class TelaConversorMoedas extends JDialog {
                     JOptionPane.showMessageDialog(null,"Selecione Moedas Diferentes para conversão !!!");
 
                 }else {
-                  String resultado =  multiplicarConversor( String.valueOf(selecaoMoedasPara.getSelectedItem())+ String.valueOf(selecaoMoedasDe.getSelectedItem()) ,Double.valueOf(deMoeda.getText()));
+                  String resultado = moeda.multiplicarConversor( String.valueOf(selecaoMoedasPara.getSelectedItem())+ String.valueOf(selecaoMoedasDe.getSelectedItem()) ,Double.valueOf(deMoeda.getText()));
                     paraMoeda.setText(resultado);
 
                 }
@@ -128,12 +129,6 @@ public class TelaConversorMoedas extends JDialog {
 
         add(jPanel,BorderLayout.PAGE_START);
         setVisible(true);
-    }
-
-    private String multiplicarConversor(String s, Double valor) {
-        Moeda moeda = CotacaoAPI.buscaCotacao(s);
-       double resultado = moeda.getHigh() * valor;
-       return String.valueOf(resultado);
     }
 
 

@@ -2,6 +2,8 @@ package br.com.oraclechallenge.ConversorMoedas;
 
 import static br.com.oraclechallenge.ConversorMoedas.CotacaoAPI.buscaCotacao;
 
+import java.lang.reflect.Constructor;
+
 class  Moeda {
 	private String code;
 	private String codein;
@@ -15,110 +17,95 @@ class  Moeda {
 	private String timestamp;
 	private String create_date;
 
+	
+
+	 public Moeda() {
+		
+	}
 
 
-	public String getCode() {
-				return code;
-			}
 
-			public void setCode(String code) {
-				this.code = code;
-			}
+	public String multiplicarConversor(String string, Double valor) {
+     Moeda moeda = CotacaoAPI.buscaCotacao(string);
+     double resultado = moeda.getHigh() * valor;
+       return String.valueOf(resultado);
+    }
 
-			public String getCodein() {
-				return codein;
-			}
 
-			public void setCodein(String codein) {
-				this.codein = codein;
-			}
+	
+	public Double getHigh() {
+		return high;
+	}
 
-			public String getName() {
-				return name;
-			}
 
-			public void setName(String name) {
-				this.name = name;
-			}
 
-			public Double getHigh() {
-				return high;
-			}
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-			public void setHigh(Double high) {
-				this.high = high;
-			}
 
-			public String getLow() {
-				return low;
-			}
 
-			public void setLow(String low) {
-				this.low = low;
-			}
+	public void setCodein(String codein) {
+		this.codein = codein;
+	}
 
-			public String getVarBid() {
-				return varBid;
-			}
 
-			public void setVarBid(String varBid) {
-				this.varBid = varBid;
-			}
 
-			public String getPctChange() {
-				return pctChange;
-			}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-			public void setPctChange(String pctChange) {
-				this.pctChange = pctChange;
-			}
 
-			public String getBid() {
-				return bid;
-			}
 
-			public void setBid(String bid) {
-				this.bid = bid;
-			}
+	public void setHigh(Double high) {
+		this.high = high;
+	}
 
-			public String getAsk() {
-				return ask;
-			}
 
-			public void setAsk(String ask) {
-				this.ask = ask;
-			}
 
-			public String getTimestamp() {
-				return timestamp;
-			}
+	public void setLow(String low) {
+		this.low = low;
+	}
 
-			public void setTimestamp(String timestamp) {
-				this.timestamp = timestamp;
-			}
 
-			public String getCreate_date() {
-				return create_date;
-			}
 
-			public void setCreate_date(String create_date) {
-				this.create_date = create_date;
-			}
+	public void setVarBid(String varBid) {
+		this.varBid = varBid;
+	}
 
-			@Override
-			public String toString() {
-				return "Moeda{" +
-						"code='" + code + '\'' +
-						", codein='" + codein + '\'' +
-						", name='" + name + '\'' +
-						", high='" + high + '\'' +
-						", low='" + low + '\'' +
-						", varBid='" + varBid + '\'' +
-						", pctChange='" + pctChange + '\'' +
-						", bid='" + bid + '\'' +
-						", ask='" + ask + '\'' +
-						", timestamp='" + timestamp + '\'' +
-						", create_date='" + create_date + '\'' +
-						'}';
-			}
+
+
+	public void setPctChange(String pctChange) {
+		this.pctChange = pctChange;
+	}
+
+
+
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+
+
+
+	public void setAsk(String ask) {
+		this.ask = ask;
+	}
+
+
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+
+
+
+	public void setCreate_date(String create_date) {
+		this.create_date = create_date;
+	}
+
+
+
+
+
+	
 		}
