@@ -7,8 +7,7 @@ package br.com.oraclechallenge.conversor;
 public class App 
 {
     public static void main( String[] args )
-    {
-      
+    {   
         TelaInicial inicial = new TelaInicial();
         inicial.setVisible(true); 
     }

@@ -74,7 +74,11 @@ public class TelaMedidasComprimento extends JFrame{
 		JButton btnNewButton = new JButton("Converter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 if(selecaoDe.getSelectedItem() == selecaoPara.getSelectedItem()) {
+				 if ( textField.getText().isBlank() || textField.getText().isEmpty()) {
+					 JOptionPane.showMessageDialog(null,"Digite algum valor para Convesão");
+				 }
+				
+			else if(selecaoDe.getSelectedItem() == selecaoPara.getSelectedItem()) {
 					 textField_1.setText(textField.getText());
 					 JOptionPane.showMessageDialog(null,"Selecione Medidas Diferentes para conversão ou o Valor será o Mesmo!!!");
 				 }
@@ -93,7 +97,7 @@ public class TelaMedidasComprimento extends JFrame{
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 TelaInicial telaInicial = new TelaInicial();
-	             setVisible(false);
+	             dispose();
 	             telaInicial.setVisible(true);
 			}
 		});

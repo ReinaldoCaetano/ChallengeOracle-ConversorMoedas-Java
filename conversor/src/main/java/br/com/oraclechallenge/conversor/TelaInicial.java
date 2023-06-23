@@ -41,6 +41,7 @@ public class TelaInicial extends JFrame{
 		JButton btnNewButton = new JButton("Ir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				 if(selecaoConversor.getSelectedIndex() == 0) {
 		               TelaConversorMoedas telaConversorMoedas = new TelaConversorMoedas();
 		               setVisible(false);

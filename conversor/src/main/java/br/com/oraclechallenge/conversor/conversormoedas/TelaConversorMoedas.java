@@ -90,13 +90,18 @@ public class TelaConversorMoedas extends JFrame {
 		JButton btnNewButton = new JButton("Converter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(String.valueOf(selecaoMoedasDe.getSelectedItem()) == String.valueOf(selecaoMoedasPara.getSelectedItem())){
+				
+				if(textField.getText().isBlank() || textField.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null,"Digite algum valor para Convesão");
+				}
+				
+			else if(String.valueOf(selecaoMoedasDe.getSelectedItem()) == String.valueOf(selecaoMoedasPara.getSelectedItem())){
 				  textField_1.setText(textField.getText());
                   JOptionPane.showMessageDialog(null,"Selecione Moedas Diferentes para conversão ou o Valor será o Mesmo!!!");
 
                 }else {
-                  textField_1.setText(moeda.multiplicarConversor( String.valueOf(selecaoMoedasPara.getSelectedItem())
-                  + String.valueOf(selecaoMoedasDe.getSelectedItem()) ,Double.valueOf(textField.getText())));
+                  textField_1.setText(moeda.multiplicarConversor(String.valueOf(selecaoMoedasDe.getSelectedItem())
+                		  + String.valueOf(selecaoMoedasPara.getSelectedItem()) ,Double.valueOf(textField.getText())));
                     
                 }
 							}
@@ -108,7 +113,8 @@ public class TelaConversorMoedas extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 TelaInicial telaInicial = new TelaInicial();
-	             setVisible(false);
+	             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	             dispose();
 	             telaInicial.setVisible(true);
 
 			}
