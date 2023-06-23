@@ -29,22 +29,22 @@ public class TelaConversorMoedas extends JFrame {
 		setSize(new Dimension( 474 , 319));
 		setLocationRelativeTo(null);
 		
-		JComboBox selecaoMoedasDe = new JComboBox();
+		JComboBox<String> selecaoMoedasDe = new JComboBox<String>();
 		selecaoMoedasDe.setBounds(71, 58, 98, 27);
-	        selecaoMoedasDe.addItem("BRL");
-	        selecaoMoedasDe.addItem("USD");
-	        selecaoMoedasDe.addItem("EUR");
-	        selecaoMoedasDe.addItem("JPY");
-	        selecaoMoedasDe.addItem("BTC");
-	        selecaoMoedasDe.addItem("ETH");
-	        selecaoMoedasDe.addItem("CAD");
-	        selecaoMoedasDe.addItem("GBP");
-	        selecaoMoedasDe.addItem("ARS");
-	        selecaoMoedasDe.addItem("CHF");
-	        selecaoMoedasDe.addItem("AUD");
-	        selecaoMoedasDe.addItem("CNY");
-	        selecaoMoedasDe.addItem("ILS");
-	        selecaoMoedasDe.addItem("LTC");
+	    selecaoMoedasDe.addItem("BRL");
+	    selecaoMoedasDe.addItem("USD");
+	    selecaoMoedasDe.addItem("EUR");
+	    selecaoMoedasDe.addItem("JPY");
+	    selecaoMoedasDe.addItem("BTC");
+	    selecaoMoedasDe.addItem("ETH");
+	    selecaoMoedasDe.addItem("CAD");
+	    selecaoMoedasDe.addItem("GBP");
+	    selecaoMoedasDe.addItem("ARS");
+	    selecaoMoedasDe.addItem("CHF");
+	    selecaoMoedasDe.addItem("AUD");
+	    selecaoMoedasDe.addItem("CNY");
+	    selecaoMoedasDe.addItem("ILS");
+	    selecaoMoedasDe.addItem("LTC");
 	    getContentPane().add(selecaoMoedasDe);
 		
 		textField = new JTextField();
@@ -62,7 +62,7 @@ public class TelaConversorMoedas extends JFrame {
 		lblNewLabel_2.setBounds(48, 97, 61, 16);
 		getContentPane().add(lblNewLabel_2);
 		
-		JComboBox selecaoMoedasPara = new JComboBox();
+		JComboBox<String> selecaoMoedasPara = new JComboBox<String>();
 		selecaoMoedasPara.setBounds(71, 137, 98, 27);
 		selecaoMoedasPara.addItem("USD");
         selecaoMoedasPara.addItem("EUR");
@@ -91,7 +91,8 @@ public class TelaConversorMoedas extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(String.valueOf(selecaoMoedasDe.getSelectedItem()) == String.valueOf(selecaoMoedasPara.getSelectedItem())){
-                    JOptionPane.showMessageDialog(null,"Selecione Moedas Diferentes para conversão !!!");
+				  textField_1.setText(textField.getText());
+                  JOptionPane.showMessageDialog(null,"Selecione Moedas Diferentes para conversão ou o Valor será o Mesmo!!!");
 
                 }else {
                   textField_1.setText(moeda.multiplicarConversor( String.valueOf(selecaoMoedasPara.getSelectedItem())

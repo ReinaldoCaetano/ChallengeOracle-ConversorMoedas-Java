@@ -46,7 +46,7 @@ public class TelaInicial extends JFrame{
 		               setVisible(false);
 		               telaConversorMoedas.setVisible(true);
 		            }
-		            if(selecaoConversor.getSelectedIndex() == 1) {
+				 else if(selecaoConversor.getSelectedIndex() == 1) {
 		                TelaMedidasComprimento telaConversorMedidasComprimento = new TelaMedidasComprimento();
 		                telaConversorMedidasComprimento.setVisible(true);
 		                setVisible(false);

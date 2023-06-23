@@ -1,5 +1,7 @@
 package br.com.oraclechallenge.conversor.conversormoedas;
 
+import br.com.oraclechallenge.conversor.utils.FormatarDoubleDecimalString;
+
 public class Moeda {
 	private String code;
 	private String codein;
@@ -13,7 +15,6 @@ public class Moeda {
 	private String timestamp;
 	private String create_date;
 
-	
 
 	 public Moeda() {
 	}
@@ -23,7 +24,7 @@ public class Moeda {
 	public String multiplicarConversor(String string, Double valor) {
      Moeda moeda = CotacaoAPI.buscaCotacao(string);
      double resultado = (moeda.getHigh() * valor);
-       return String.valueOf(resultado);
+       return FormatarDoubleDecimalString.formatarDecimal(resultado);
 	   
     }
 
